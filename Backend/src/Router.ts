@@ -10,4 +10,7 @@ router.post('/session', new AuthUserController().handler);
 router.post('/users', new UserController().handle );
 router.get('/userInfor', isAuthetication, new DetalUserController().handler)
 
+
+//Rotas Category
+
 export {router}
