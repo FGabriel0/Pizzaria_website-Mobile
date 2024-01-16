@@ -28,7 +28,7 @@ model Category{
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
-  @@map("categories")
+  @@map("category")
   products Product[]
 }
 
