@@ -87,7 +87,7 @@ export function AuthProvider({ children }: AuthContextProps) {
             // Passar as Requisições
             api.defaults.headers['Authorization'] = `Bearer ${token}`
 
-            toast.success("Seja Bem-Vindo")
+            toast.success(`Seja Bem-Vindo`)
 
             Router.push("/dashboard")
 

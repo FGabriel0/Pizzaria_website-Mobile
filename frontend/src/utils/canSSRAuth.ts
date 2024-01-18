@@ -29,6 +29,7 @@ export function canSSRAuth<P>(fn: GetServerSideProps<P>){
                 }
             }
         }
+        throw error;
     }
     }
 }
