@@ -4,6 +4,8 @@ import Header from "../../components/Header/index"
 import { useState,FormEvent } from "react"
 import { setupAPIClient } from "../../services/ApiService"
 import { toast } from "react-toastify"
+import { canSSRAuth } from "@/src/utils/canSSRAuth"
+
 export default function Category(){
     
     const [nome,setNome] = useState("")
@@ -51,3 +53,9 @@ export default function Category(){
         </>
     )
 }
+
+export const getServerSideProps = canSSRAuth(async (ctx) =>{
+    return{
+        props:{}
+    }
+})
