@@ -22,9 +22,10 @@ const router = Router();
 const upload = multer(uploadConfig.upload("./tmp"))
 
 //ROTAS USERS
+
 router.post('/session', new AuthUserController().handler);
 router.post('/users', new UserController().handle );
-router.get('/userInfor', isAuthetication, new DetalUserController().handler)
+router.get('/me', isAuthetication, new DetalUserController().handler)
 
 
 //Rotas Category

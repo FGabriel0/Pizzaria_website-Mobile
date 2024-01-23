@@ -17,7 +17,7 @@ import Link from 'next/link';
 export default function SignUp() {
   const { signUp } = useContext(AuthContext);
 
-  const [nome, setNome] = useState('')
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -26,7 +26,7 @@ export default function SignUp() {
   async function handleSignUp(event: FormEvent){
     event.preventDefault();
 
-    if(nome === '' || email === '' || password === ''){
+    if(name === '' || email === '' || password === ''){
       toast.error("Preencha todos os campos")
       return;
     }
@@ -34,7 +34,7 @@ export default function SignUp() {
     setLoading(true);
 
     let data = {
-      nome,
+      name,
       email,
       password
     }
@@ -60,8 +60,8 @@ export default function SignUp() {
           <Input
             placeholder="Digite seu nome"
             type="text"
-            value={nome}
-            onChange={ (e) => setNome(e.target.value) }
+            value={name}
+            onChange={ (e) => setName(e.target.value) }
           />
 
           <Input

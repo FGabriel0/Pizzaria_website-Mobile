@@ -18,7 +18,7 @@ type AuthContextData = {
 
 type UserProps = {
   id: string;
-  nome: string;
+  name: string;
   email: string;
 }
 
@@ -28,7 +28,7 @@ type SignInProps = {
 }
 
 type SignUpProps = {
-  nome: string;
+  name: string;
   email: string;
   password: string;
 }
@@ -60,11 +60,11 @@ export function AuthProvider({ children }: AuthProviderProps){
 
     if(token){
       api.get('/me').then(response => {
-        const { id, nome, email } = response.data;
+        const { id, name, email } = response.data;
 
         setUser({
           id,
-          nome,
+          name,
           email
         })
 
@@ -86,7 +86,7 @@ export function AuthProvider({ children }: AuthProviderProps){
       })
       // console.log(response.data);
 
-      const { id, nome, token } = response.data;
+      const { id, name, token } = response.data;
 
       setCookie(undefined, '@nextauth.token', token, {
         maxAge: 60 * 60 * 24 * 30, // Expirar em 1 mes
@@ -95,7 +95,7 @@ export function AuthProvider({ children }: AuthProviderProps){
 
       setUser({
         id,
-        nome,
+        name,
         email,
       })
 
@@ -115,11 +115,11 @@ export function AuthProvider({ children }: AuthProviderProps){
   }
 
 
-  async function signUp({ nome, email, password}: SignUpProps){
+  async function signUp({ name, email, password}: SignUpProps){
     try{
       
       const response = await api.post('/users', {
-        nome,
+        name,
         email,
         password
       })

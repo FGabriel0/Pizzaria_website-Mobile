@@ -178,25 +178,15 @@ export default function Product({ categoryList }: CategoryProps){
   )
 }
 
-export const getServerSideProps = canSSRAuth(async (ctx) => {
-  try {
-    const apiClient = setupAPIClient(ctx);
-    
-    // Seu código para obter dados da API
-    const response = await apiClient.get('/category');
-    const categoryList = response.data;
+// export const getServerSideProps = canSSRAuth(async (ctx) => {
+//   const apliClient = setupAPIClient(ctx)
 
-    return {
-      props: {
-        categoryList,
-      },
-    };
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    return {
-      props: {
-        categoryList: [],
-      },
-    };
-  }
-});
+//   const response = await apliClient.get('/category');
+//   //console.log(response.data);
+
+//   return {
+//     props: {
+//       categoryList: response.data
+//     }
+//   }
+// })
