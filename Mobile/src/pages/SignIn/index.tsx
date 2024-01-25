@@ -1,5 +1,6 @@
-import React,{useState} from "react";
+import React,{useState,useContext} from "react";
 import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from "react-native";
+import { AuthContext, AuthProvider } from "../../context/AuthContext";
 
 
 export default function SingIn() {
@@ -7,9 +8,16 @@ export default function SingIn() {
     const[email,setEmail]=useState("")
     const[password,setPassword]=useState("")
 
-    function handlerLogin(){
-        console.log(email)
-        console.log(password)
+    const {signIn} = useContext(AuthContext);
+
+    async function handlerLogin(){
+
+        const data = {
+            email,
+            password
+        }
+
+        await signIn(data)
     }
 
 
