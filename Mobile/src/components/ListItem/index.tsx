@@ -7,7 +7,7 @@ interface ItemProps {
   data:{
     id: string;
     product_id: string;
-    name: string;
+    nome: string;
     amount: string | number;
   };
   deleteItem: (item_id: string) => void;
@@ -21,7 +21,7 @@ export function ListItem({ data, deleteItem }: ItemProps){
   
   return(
     <View style={styles.container}>
-      <Text style={styles.item}>{data.amount} - {data.name}</Text>
+      <Text style={styles.item}>{data.amount} - {data.nome}</Text>
       
       <TouchableOpacity onPress={handleDeleteItem}>
         <Feather name="trash-2" color="#FF3F4b" size={25} />

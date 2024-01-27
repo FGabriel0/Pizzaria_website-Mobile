@@ -16,7 +16,7 @@ export function isAuthetication(
     return res.status(401).end();
   }
 
-  const [, token] = authToken.split("");
+  const [, token] = authToken.split(" ");
 
   try {
     const { sub } = verify(token, process.env.JWT_SECRET) as PayLoad;

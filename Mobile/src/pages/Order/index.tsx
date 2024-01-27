@@ -29,18 +29,18 @@ type RouteDetailParams = {
 
 export type CategoryProps = {
   id: string;
-  name: string;
+  nome: string;
 }
 
 type ProductProps = {
   id: string;
-  name: string;
+  nome: string;
 }
 
 type ItemProps = {
   id: string;
   product_id: string;
-  name: string;
+  nome: string;
   amount: string | number;
 }
 
@@ -59,7 +59,7 @@ export default function Order(){
   const [modalProductVisible, setModalProductVisible] = useState(false);
 
   const [amount, setAmount] = useState('1')
-  const [items, setItems] = useState<ItemProps[]>([]);
+  const [itens, setItens] = useState<ItemProps[]>([]);
 
   useEffect(()=> {
     async function loadInfo(){
@@ -130,29 +130,29 @@ export default function Order(){
     let data = {
       id: response.data.id,
       product_id: productSelected?.id as string,
-      name: productSelected?.name as string,
+      nome: productSelected?.nome as string,
       amount: amount
     }
 
 
-    setItems(oldArray => [...oldArray, data])
+    setItens(oldArray => [...oldArray, data])
 
   }
 
 
   async function handleDeleteItem(item_id: string){
-    await api.delete('/order/delete', {
+    await api.delete('/order/add', {
       params:{
         item_id: item_id
       }
     })
 
     // após remover da api removemos esse item da nossa lista de items
-    let removeItem = items.filter( item => {
+    let removeItem = itens.filter( item => {
       return (item.id !== item_id)
     })
 
-    setItems(removeItem)
+    setItens(removeItem)
 
   }
 
@@ -169,7 +169,7 @@ export default function Order(){
       
       <View style={styles.header}>
         <Text style={styles.title}>Mesa {route.params.number}</Text>
-        {items.length === 0 && (
+        {itens.length === 0 && (
           <TouchableOpacity onPress={handleCloseOrder}>
             <Feather name="trash-2" size={28} color="#FF3F4b" />
           </TouchableOpacity>
@@ -179,7 +179,7 @@ export default function Order(){
       {category.length !== 0 && (
         <TouchableOpacity style={styles.input} onPress={ () => setModalCategoryVisible(true) }>
           <Text style={{ color: '#FFF' }}>
-            {categorySelected?.name}
+            {categorySelected?.nome}
           </Text>
         </TouchableOpacity>
       )}
@@ -187,7 +187,7 @@ export default function Order(){
       {products.length !== 0 && (
         <TouchableOpacity style={styles.input} onPress={ () => setModalProductVisible(true)} >
           <Text style={{ color: '#FFF' }}>
-            {productSelected?.name}
+            {productSelected?.nome}
           </Text>
         </TouchableOpacity>        
       )}
@@ -209,8 +209,8 @@ export default function Order(){
         </TouchableOpacity>
 
         <TouchableOpacity 
-          style={[styles.button, { opacity: items.length === 0 ? 0.3 : 1 } ]}
-          disabled={items.length === 0}
+          style={[styles.button, { opacity: itens.length === 0 ? 0.3 : 1 } ]}
+          disabled={itens.length === 0}
           onPress={handleFinishOrder}
         >
            <Text style={styles.buttonText}>Avançar</Text> 
@@ -220,10 +220,11 @@ export default function Order(){
 
       <FlatList
         showsVerticalScrollIndicator={false}
-        style={{ flex: 1, marginTop: 24 }}
-        data={items}
+        style={{ flex: 1, marginTop: 24}}
+        data={itens}
         keyExtractor={(item) => item.id }
-        renderItem={ ({ item }) =>  <ListItem data={item} deleteItem={handleDeleteItem} /> }
+        renderItem={ ({ item }) =>  
+          <ListItem data={item} deleteItem={handleDeleteItem} /> }
       />
 
 
@@ -232,7 +233,6 @@ export default function Order(){
         visible={modalCategoryVisible}
         animationType="fade"
       >
-
         <ModalPicker
           handleCloseModal={ () => setModalCategoryVisible(false) }
           options={category}
@@ -246,6 +246,7 @@ export default function Order(){
         transparent={true}
         visible={modalProductVisible}
         animationType="fade"
+        
       >
 
         <ModalPicker
@@ -268,6 +269,10 @@ const styles = StyleSheet.create({
     paddingVertical: '5%',
     paddingEnd: '4%',
     paddingStart: '4%'
+  },
+  modals:{
+    backgroundColor:"black",
+    color:"#000,"
   },
   header:{
     flexDirection: 'row',
