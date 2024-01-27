@@ -34,7 +34,7 @@ router.get('/category', isAuthetication, new ListCategoryController().handler);
 
 //Rotas Product
 router.post('/products' ,isAuthetication, upload.single('file'), new createProductController().handler)
-router.get('/category/products', new ListByCategoryController().handler)
+router.get('/category/products', isAuthetication,new ListByCategoryController().handler)
 
 
 //Rotas Orders
