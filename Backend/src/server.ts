@@ -6,6 +6,7 @@ import path from "path";
 import { router } from "./Router";
 
 const app = express();
+require('dotenv').config();
 app.use(express.json()); //Ser formato json
 app.use(cors());
 app.use(router);

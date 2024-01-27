@@ -6,7 +6,7 @@ import { AuthContext } from "../context/AuthContext";
 
 
 function Router() {
-    const {isAuthentication} = useContext(AuthContext)
+    const { isAuthenticated } = useContext(AuthContext);
     const Loading = false
 
     if (Loading) {
@@ -22,7 +22,7 @@ function Router() {
         )
     }
     return (
-        isAuthentication ? <AppRouter /> : <AuthRouter />
+        isAuthenticated ? <AppRouter /> : <AuthRouter />
     )
 }
 

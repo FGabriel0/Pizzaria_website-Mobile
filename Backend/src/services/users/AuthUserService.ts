@@ -17,7 +17,7 @@ class AuthUserService{
         })
 
         if(!user){
-            throw new Error("Senha incorreto")
+            throw new Error("Email não encontrado")
         }
         
         //Verificar se a senha esta correta

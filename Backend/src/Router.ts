@@ -29,8 +29,8 @@ router.get('/me', isAuthetication, new DetalUserController().handler)
 
 
 //Rotas Category
-router.post('/category', isAuthetication,new CreateCategoryController().handler)
-router.get('/category', isAuthetication, new ListCategoryController().handler);
+router.post('/category',new CreateCategoryController().handler)
+router.get('/category',  new ListCategoryController().handler);
 
 //Rotas Product
 router.post('/products' ,isAuthetication, upload.single('file'), new createProductController().handler)
@@ -38,15 +38,15 @@ router.get('/category/products', new ListByCategoryController().handler)
 
 
 //Rotas Orders
-router.post('/order', isAuthetication, new CreateOrderController().handler)
+router.post('/order', new CreateOrderController().handler)
 router.delete('/order',isAuthetication, new RemoveOrderController().handler)
-router.put('/order' ,isAuthetication, new SendOrderController().handler)
+router.put('/order' , new SendOrderController().handler)
 router.get('/order',isAuthetication,new ListOrderController().handler)
 router.get('/order/detail', isAuthetication,new DetailOrderController().handler)  
-router.put('/order/finish' ,isAuthetication, new FinishOrderController().handler)
+router.put('/order/finish' , new FinishOrderController().handler)
 
 //Rotas de Items
-router.post('/order/add',isAuthetication , new AddItemsController().handler)
-router.delete('/order/add',isAuthetication, new RemoveItemController().handler)
+router.post('/order/add' , new AddItemsController().handler)
+router.delete('/order/add', new RemoveItemController().handler)
 
 export {router}

@@ -1,6 +1,9 @@
 import React,{useState,useContext} from "react";
 import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from "react-native";
 import { AuthContext, AuthProvider } from "../../context/AuthContext";
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { useNavigation } from '@react-navigation/native'
+import { StackPramsList } from '../../routes/app.routes'
 
 
 export default function SingIn() {
@@ -10,12 +13,17 @@ export default function SingIn() {
 
     const {signIn} = useContext(AuthContext);
 
+
     async function handlerLogin(){
 
         const data = {
             email,
             password
         }
+        
+        if(email === '' || password === ''){
+            return;
+          }
 
         await signIn(data)
     }

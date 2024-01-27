@@ -8,7 +8,10 @@ class AuthUserController {
         const authUserService = new AuthUserService();// chamando a classe AuthUserService
 
         //Fornecendo o email e a senha
-        const auth = await authUserService.execute({email,password});
+        const auth = await authUserService.execute({
+            email,
+            password
+        });
 
         return res.json(auth);
     }
